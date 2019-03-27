@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <Search name ="Direct search">
+    <text>
+      Алгоритм прямого поиска
+
+
+      Идея алгоритма:
+      1. I=1,
+      2. сравнить I-й символ массива T с первым символом массива W,
+      3. совпадение → сравнить вторые символы и так далее,
+      4. несовпадение → I:=I+1 и переход на пункт 2,
+
+      Условие окончания алгоритма:
+      1. подряд М сравнений удачны,
+      2. I+M>N, то есть слово не найдено.
+
+      Сложность алгоритма:
+      Худший случай. Пусть массив T→{AAA….AAAB}, длина │T│=N, образец W→{A….AB}, длина │W│=M. Очевидно, что для обнаружения совпадения в конце строки потребуется произвести порядка N*M сравнений, то есть O(N*M).
+
+      Недостатки алгоритма:
+      1. высокая сложность — O(N*M), в худшем случае – Θ((N-M+1)*M);
+      2. после несовпадения просмотр всегда начинается с первого символа образца и поэтому может включать символы T, которые ранее уже просматривались (если строка читается из вторичной памяти, то такие возвраты занимают много времени);
+      3. информация о тексте T, получаемая при проверке данного сдвига S, никак не используется при проверке последующих сдвигов.
+    </text>
+    <algorithm_complexity>O(N*M), в худшем случае – Θ((N-M+1)*M)</algorithm_complexity>
+  </Search>
+  
+  <Search name="BM Search">
+    <text>
+      Алгоритм Р. Боуера и Д. Мура (БМ-поиск)
+
+
+      На практике алгоритм БМ-поиска наиболее эффективен, если образец W длинный, а мощность алфавита достаточно велика.
+
+      Идея БМ-поиска – сравнение символов начинается с конца образца, а не с начала, то есть сравнение отдельных символов происходит справа налево. Затем с помощью некоторой эвристической процедуры вычисляется величина сдвига вправо s. И снова производится сравнение символов, начиная с конца образца.
+
+      Этот метод не только улучшает обработку самого плохого случая, но и даёт выигрыш в промежуточных ситуациях.
+      Почти всегда, кроме специально построенных примеров, БМ-поиск требует значительно меньше N сравнений. В самых же благоприятных обстоятельствах, когда последний символ образца всегда попадает на несовпадающий символ текста, число сравнений равно (N / M), в худшем же случае – О((N-M+1)*M+ p), где p – мощность алфавита.
+    </text>
+    <algorithm_complexity>(N / M), в худшем же случае – О((N-M+1)*M+ p), где p – мощность алфавита</algorithm_complexity>
+  </Search>
+  <Search name ="Test">
+    <text>
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+    </text>
+    
+  </Search>
+  
+</root>
